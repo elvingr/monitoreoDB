@@ -1,0 +1,50 @@
+<!-- Tabs -->
+<div class="tabs-container">
+    @for (tab of tabs; track tab.ServerName; let indice = $index) {
+    <div class="tab" [ngClass]="{'active':tab.active}" (click)="switchTab(indice, tab.ServerName)">
+        <span>{{tab.icon}} {{tab.ServerName}}</span>
+    </div>
+    }
+</div>
+<!-- Content Area -->
+<div class="content-area">
+    <div class="tab-content active">
+        <div class="table-header">
+            Vista General ( Indica si los Backups fueron realizados los dias correspondiente )
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        @for (header of currentHeaders; track $index) {
+                         @if (header != 'MENSAJE' && header != 'NOMBRE BACKUP') {
+                        <th>{{header}}</th>
+                        }
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (data of currentData; track $index) {
+                    <tr>
+                        <td>{{ data.ID }}</td>
+                        <td>{{ data['NOMBRE ARCHIVO'] }}</td>
+                        <!-- <td>{{ data['NOMBRE BACKUP'] || '- - -' }}</td> -->
+                        <td>{{ data['NOMBRE DB'] }}</td>
+                        <td>{{ data['FECHA INICIO'] | date:'d MMM , y hh:mm a'}}</td>
+                        <td>{{ data['FECHA FIN'] | date:'d MMM , y hh:mm a'}}</td>
+                        <td>{{ data['FECHA VALIDACION'] | date:'d MMM , y hh:mm a'}}</td>
+                        <td>
+                            <span class="status-tag"
+                                [ngClass]="{'status-active': !data.ESTADO, 'status-alert':data.ESTADO}">
+                                {{data['MENSAJE']}}
+                            </span>
+                        </td>
+                        <td>{{ data['TAMANO'] }}</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>

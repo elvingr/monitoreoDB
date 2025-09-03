@@ -1,0 +1,19 @@
+<div class="notification-container">
+    @for (n of notifications; track $index) {
+    <div class="notification" [ngClass]="n.type">
+        <span>{{ n.message }}</span>
+
+        @if (n.type === 'decision') {
+        <ng-container>
+            <button class="yes" (click)="respond(n.id, true)">Sí</button>
+            <button class="no" (click)="respond(n.id, false)">No</button>
+        </ng-container>
+
+        }@else {
+        <ng-template #normalNotif>
+            <button class="close-btn" (click)="close(n.id)">&times;</button>
+        </ng-template>
+        }
+    </div>
+    }
+</div>

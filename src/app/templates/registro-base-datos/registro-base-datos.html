@@ -1,0 +1,77 @@
+<!-- Content Area -->
+<div class="content-area">
+    <div class="tab-content active">
+        <div class="table-header">
+            Vista General ( Indica si los Backups fueron realizados los dias correspondiente )
+        </div>
+        <div class="form-container-registro">
+            <form [formGroup]="miFormularioConexion" class="connection-form"  #connForm="ngForm"
+                novalidate>
+                <div class="form-group">
+                    <label for="nombre_db">Nombre DB</label>
+                    <input type="text" id="nombre_db" formControlName="nombre_db"   [ngClass]="{'validar': campoInvalido(miFormularioConexion,'nombre_db')}" />
+                </div>
+                <div class="form-group">
+                    <label for="usuario_db">Usuario DB</label>
+                    <input type="text" id="usuario_db" formControlName="usuario_db" [ngClass]="{'validar': campoInvalido(miFormularioConexion,'usuario_db')}" />
+                </div>
+                <div class="form-group">
+                    <label for="password_db">Password DB</label>
+                    <input type="password" id="password_db" formControlName="password_db" [ngClass]="{'validar': campoInvalido(miFormularioConexion,'password_db')}" />
+                </div>
+                <div class="form-group">
+                    <label for="serverHost_db">Server Host DB</label>
+                    <input type="text" id="serverHost_db" formControlName="server_host_db" [ngClass]="{'validar': campoInvalido(miFormularioConexion,'server_host_db')}" />
+                </div>
+                <div class="form-group">
+                    <label for="ip_db">IP DB</label>
+                    <input type="text" id="ip_db" formControlName="ip_db" [ngClass]="{'validar': campoInvalido(miFormularioConexion,'ip_db')}"/>
+                </div>
+                <div class="form-group">
+                    <label for="instancia_db">Instancia DB</label>
+                    <input type="text" id="instancia_db" formControlName="instancia_db"  />
+                </div>
+
+                <div class="form-group">
+                    <label for="puerto_db">Puerto DB</label>
+                    <input type="number" id="puerto_db" formControlName="puerto_db" min="1" max="65535" [ngClass]="{'validar': campoInvalido(miFormularioConexion,'puerto_db')}" />
+                </div>
+                <div class="form-group">
+                    <button (click)="handleDecision(false)" type="submit">Guardar Conexion</button>
+                    <button (click)="handleDecision(true)">Test Conecxion</button>
+                    <button (click)="notifService.decision('¿Deseas continuar?', this.cancelar)" >Cancelar</button>
+                </div>
+
+            </form>
+            <div class="contenedor-conexiones-existentes">
+                <table>
+                    <thead>
+                        <tr>
+                            @for (header of currentHeaders; track $index) {
+                            @if (header != 'MENSAJE' && header != 'NOMBRE BACKUP') {
+                            <th>{{header}}</th>
+                            }
+                            }
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (conexion of conexiones_db; track conexion) {
+                        <tr>
+                            <td>{{ conexion['ID'] }}</td>
+                            <td>{{ conexion['Nombre DB'] }}</td>
+                            <td>{{ conexion['Usuario DB'] }}</td>
+                            <td>{{ conexion['Server Host DB'] }}</td>
+                            <td>{{ conexion['IP DB']}}</td>
+                            <td>{{ conexion['Puerto DB'] }}</td>
+                            <td>{{ conexion['Instancia DB'] || '---' }}</td>
+                            <td (click)="llamarEliminarConexionDB(conexion['ID'])"><span class="borrar-conexion">BORRAR</span></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

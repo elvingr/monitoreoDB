@@ -1,0 +1,45 @@
+<!-- Tabs -->
+<div class="tabs-container">
+    @for (tab of tabs; track tab.serverHost_db; let indice = $index) {
+    <div class="tab" [ngClass]="{'active':tab.active}" (click)="switchTab(indice, tab.id_conexion_db)">
+        <span>{{tab.icon}} {{tab.serverHost_db}}\{{tab.instancia_db}}</span>
+    </div>
+    }
+</div>
+<!-- Content Area -->
+<div class="content-area">
+    <div class="tab-content active">
+        <div class="table-header">
+            Vista General ( Muestra los recursos de hardware de los servidores SQL )
+        </div>
+        <div class="table-container">
+            @if (loading) {
+            <div class="loading-container">
+                <div class="spinner"></div>
+                <p>Cargando datos del servidor...</p>
+            </div>
+            }@else {
+                <div class="cards-grid">
+                    @for (card of cards; track $index) {
+                    <div class="card">
+                        <div class="card-header">
+                            <i [class]="card.icon"></i> {{ card.title }}
+                        </div>
+                        <div class="card-body">
+                            @for (metric of card.metrics; track $index) {
+                            <p><strong>{{ metric.label }}:</strong> {{ metric.value }}</p>
+                            }
+                            @if (card.progress != null) {
+                            <div class="progress-bar">
+                                <div class="progress-filled" [style.width.%]="card.progress"></div>
+                            </div>
+                            <p><strong>% Usada:</strong> {{ card.progress }}%</p>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<!-- Tabs -->
+<div class="tabs-container">
+
+    <div class="tab-button">
+        <span (click)="probarTodasConexiones()" class="status-tag-full ">Probar Todo</span>
+    </div>
+
+</div>
+<!-- Content Area -->
+<div class="content-area">
+    <div class="tab-content active">
+        <div class="table-header">
+            Vista General ( Area para probar las conexiones a las Bases de Datos )
+        </div>
+        <div class="table-container">
+            <!-- <table>
+                    <thead>
+                        <tr>
+                            @for (header of currentHeaders; track $index) {
+                            @if (header != 'MENSAJE' && header != 'NOMBRE BACKUP') {
+                            <th>{{header}}</th>
+                            }
+                            }
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (conexion of conexiones_db; track conexion) {
+                        <tr>
+                            <td>{{ conexion['ID'] }}</td>
+                            <td>{{ conexion['Nombre DB'] }}</td>
+                            <td>{{ conexion['Usuario DB'] }}</td>
+                            <td>{{ conexion['Server Host DB'] }}</td>
+                            <td>{{ conexion['IP DB']}}</td>
+                            <td>{{ conexion['Puerto DB'] }}</td>
+                            <td>{{ conexion['Instancia DB'] || '---' }}</td>
+                            <td><span (click)="llamarValidarConexionDB2(conexion['ID'])" class="status-tag status-active prueba-conexion">Probar</span></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table> -->
+            <table>
+                <thead>
+                    <tr>
+                        @for (header of currentHeaders; track $index) {
+                        @if (header != 'MENSAJE' && header != 'NOMBRE BACKUP') {
+                        <th>{{header}}</th>
+                        }
+                        }
+                        <th>ACCIONES</th>
+                        <th>RESULTADO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (conexion of conexiones_db; track conexion) {
+                    <tr>
+                        <td>{{ conexion['ID'] }}</td>
+                        <td>{{ conexion['Nombre DB'] }}</td>
+                        <td>{{ conexion['Usuario DB'] }}</td>
+                        <td>{{ conexion['Server Host DB'] }}</td>
+                        <td>{{ conexion['IP DB']}}</td>
+                        <td>{{ conexion['Puerto DB'] }}</td>
+                        <td>{{ conexion['Instancia DB'] || '---' }}</td>
+                        <!-- ... -->
+                        <td>
+                            <span (click)="llamarValidarConexionDB2(conexion['ID'])"
+                                class="status-tag status-active prueba-conexion">Probar</span>
+                        </td>
+                        <td>
+                            @if (
+                            connectionResults[conexion['ID']]
+                            ) {
+                            <ng-container>
+                                <span class="status-tag" [ngClass]="{
+                                        'status-completed': connectionResults[conexion['ID']].status==='success',
+                                        'status-pending': connectionResults[conexion['ID']].status==='warning',
+                                        'status-alert': connectionResults[conexion['ID']].status==='error',
+                                        'status-review': connectionResults[conexion['ID']].status==='pending'
+                                    }">
+                                    {{ connectionResults[conexion['ID']].status }}
+                                </span>
+                            </ng-container>
+                            }
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

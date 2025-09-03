@@ -1,0 +1,11 @@
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">AdminPro DB</div>
+    </div>
+    @for (item of menuItems; track $index) {
+    <div class="menu-item" (click)="switchModule(item.id)" [routerLink]="item.ruta" routerLinkActive="active">
+        <span><i [ngClass]="item.icon" class="icon-module"></i> {{item.title}}</span>
+    </div>
+    }
+</div>

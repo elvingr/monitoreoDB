@@ -1,12 +1,20 @@
-import { Component, signal } from '@angular/core';
+
+import { CommonModule } from '@angular/common';
+import { Component, } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Sidebar } from './shared/sidebar/sidebar';
+import { Notificaciones } from './shared/notificaciones/notificaciones';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule, Sidebar, Notificaciones],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('monitoreoDBs');
+
+  moduleTitle: string = 'Gestión de Usuarios';
+  currentTab: string = 'overview';
+
 }

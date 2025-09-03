@@ -1,0 +1,90 @@
+/* Form container */
+.connection-form {
+    max-width: 100%px;
+    min-width: 100%px;
+    margin: 20px;
+    /* background: rgba(36, 53, 64, 0.858); */
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(13, 41, 52, 0.221);
+    color: #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    /* margin-bottom: 2px; */
+    color: #0b2e46;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    border: 1.5px solid #b7b8b89e;
+    background: rgba(255, 255, 255, 0.1);
+    color: #0b2e46;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #49c31c;
+    background: rgba(255, 255, 255, 0.251);
+}
+
+button {
+    background: linear-gradient(135deg, #3e9a9c, #275e73);
+    border: none;
+    padding: 0.75rem 1.8rem;
+    border-radius: 6px;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+button:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+button:disabled {
+    background: rgba(102, 164, 234, 0.4);
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    background: linear-gradient(#294d778a);
+    color: #0b2e46;
+}
+
+.contenedor-conexiones-existentes {
+    padding: 20px;
+    /* margin-left:auto; */
+}
+
+.borrar-conexion:hover {
+    cursor: pointer;
+    background: linear-gradient(135deg, #fd3e4e, #a33554);
+}
+.borrar-conexion {
+    background: linear-gradient(135deg, #ff4757, #c44569);
+    padding: 0.3rem 0.7rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+}
